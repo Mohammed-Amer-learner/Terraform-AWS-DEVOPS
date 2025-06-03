@@ -1,0 +1,103 @@
+### 📄 `Terraform-AWS-DEVOPS-Projects/Project1/README.md`
+
+````markdown
+# ⚙️ Project 1: Terraform Infrastructure with DevOps Integration
+
+## 📌 Description
+
+This project demonstrates the integration of **Terraform** with **DevOps practices** to provision and automate AWS infrastructure. It sets up a basic AWS environment and optionally integrates with tools like **Jenkins** for Continuous Deployment.
+
+---
+
+## 🧱 Key Components
+
+- **Terraform** for provisioning AWS resources
+- **AWS Services**: EC2, S3, VPC, Security Groups
+- (Optional) **Jenkins** or shell scripts for deployment pipeline
+
+---
+
+## 🗂️ Project Structure
+
+```bash
+Project1/
+├── main.tf              # Main Terraform config
+├── variables.tf         # Input variables
+├── outputs.tf           # Output definitions
+├── terraform.tfvars     # Variable values
+├── jenkins-pipeline/    # (Optional) Jenkins pipeline scripts/configs
+└── README.md            # Project documentation
+````
+
+---
+
+## 🚀 What It Does
+
+* Provisions an EC2 instance inside a VPC
+* Sets up an S3 bucket
+* Configures Security Groups for SSH and HTTP
+* (Optional) Uses Jenkins to automate Terraform actions (init, plan, apply)
+
+---
+
+## 🛠️ How to Use
+
+> Ensure Terraform is installed and AWS credentials are set.
+
+1. **Navigate to the folder:**
+
+   ```bash
+   cd Terraform-AWS-DEVOPS-Projects/Project1
+   ```
+
+2. **Initialize Terraform:**
+
+   ```bash
+   terraform init
+   ```
+
+3. **Preview plan:**
+
+   ```bash
+   terraform plan
+   ```
+
+4. **Apply the infrastructure:**
+
+   ```bash
+   terraform apply
+   ```
+
+5. *(Optional)* If Jenkins integration exists, trigger the pipeline to automate these steps.
+
+---
+
+## 🧰 Tools Used
+
+* Terraform
+* AWS (EC2, S3, VPC, SG)
+* Bash scripting / Jenkins (for automation)
+
+---
+
+## 📦 Outputs
+
+* EC2 public IP
+* S3 bucket name
+* (Optional) Jenkins pipeline status/logs
+
+---
+
+## 🔐 Security Tips
+
+* Use IAM roles or environment variables — **never hardcode credentials**
+* Enable versioning on S3 if used for state backend
+* Add `backend.tf` if you’re storing state remotely (e.g., in S3)
+
+---
+
+## 🧑‍💻 Author
+
+**Mohammed Amer**
+📍 Hyderabad, India
+🔗 [GitHub Profile](https://github.com/Mohammed-Amer-learner)
