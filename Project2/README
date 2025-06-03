@@ -1,0 +1,113 @@
+### 📁 `project-2-vpc-public-flask/README.md`
+
+````markdown
+# Project 2: VPC with Public Subnet and Flask App
+
+## 📌 Overview
+
+This Terraform project provisions a custom AWS VPC with a public subnet and deploys an EC2 instance running a simple Python Flask web application.
+
+It demonstrates how to automate basic cloud infrastructure and use provisioners for application setup.
+
+---
+
+## 🚀 Features
+
+- Custom VPC with CIDR block
+- Public subnet with Internet Gateway and route table
+- EC2 instance in public subnet
+- Security group allowing SSH (port 22) and HTTP (port 80)
+- User data to install Python, Flask, and run the app
+- Outputs for instance public IP and app URL
+
+---
+
+## 🛠️ Terraform Files
+
+| File            | Description                                 |
+|-----------------|---------------------------------------------|
+| `main.tf`       | Contains AWS resources like VPC, subnet, EC2|
+| `variables.tf`  | Input variables for customization            |
+| `outputs.tf`    | Output values (e.g., EC2 public IP)          |
+| `providers.tf`  | AWS provider configuration                   |
+| `user-data.sh`  | Shell script to bootstrap Flask app          |
+
+---
+
+## 🧾 Prerequisites
+
+- AWS CLI configured (`aws configure`)
+- Terraform installed (`terraform -v`)
+- Key pair created in AWS (for SSH access)
+
+---
+
+## 📦 Usage
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/Mohammed-Amer-learner/Terraform-AWS-Projects-Repository.git
+cd Terraform-AWS-Projects-Repository/project-2-vpc-public-flask
+````
+
+2. **Initialize Terraform**
+
+```bash
+terraform init
+```
+
+3. **Review the plan**
+
+```bash
+terraform plan
+```
+
+4. **Apply the configuration**
+
+```bash
+terraform apply
+```
+
+5. **Access Flask App**
+
+Open the public IP from outputs in a browser:
+
+```
+http://<EC2_PUBLIC_IP>
+```
+
+---
+
+## 🧹 Teardown
+
+To remove the infrastructure:
+
+```bash
+terraform destroy
+```
+
+---
+
+## 📸 Example Output
+
+```bash
+Outputs:
+
+ec2_public_ip = "3.110.XX.XX"
+```
+
+---
+
+## ✅ Notes
+
+* Make sure your EC2 instance’s security group allows inbound HTTP and SSH traffic.
+* Flask app runs on port 80 using a simple `Hello from Flask` app.
+* Provisioner section uses `user_data` for automatic installation.
+
+---
+
+## 👤 Author
+
+**Mohammed Amer**
+Terraform | AWS | DevOps Projects
