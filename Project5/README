@@ -1,1 +1,66 @@
+# Terraform Project 5- Jenkins Pipeline for EC2 with S3 Backend
 
+This project demonstrates how to provision an EC2 instance (for Jenkins or any other purpose) using Terraform, while managing Terraform state remotely in an S3 bucket with DynamoDB locking. It includes a Jenkins pipeline that automates Terraform lifecycle commands (`init`, `plan`, `apply`, `destroy`).
+
+---
+
+## 🚀 Features
+
+- Creates an EC2 instance with a security group allowing SSH (22) and Jenkins (8080) ports
+- Uses a remote S3 backend for Terraform state storage
+- Uses DynamoDB table for Terraform state locking to prevent concurrent changes
+- Jenkinsfile pipeline stages for:
+  - Terraform initialization
+  - Terraform planning
+  - Terraform apply/destroy actions controlled by parameters
+
+---
+
+## ⚙️ Terraform Components
+
+- **VPC** with a /24 CIDR block (`10.0.2.0/24`)
+- **Security Group** allowing inbound SSH (22) and Jenkins UI (8080)
+- **EC2 instance** using specified AMI, instance type, and key pair
+- **S3 Bucket** for Terraform remote state storage (pre-created)
+- **DynamoDB Table** for locking Terraform state (pre-created)
+
+---
+
+## 🔧 Jenkins Pipeline
+
+- `terraform init` with backend reconfiguration
+- `terraform plan` for previewing changes
+- `terraform apply` or `terraform destroy` based on parameter passed
+
+---
+
+## 📋 Prerequisites
+
+- AWS credentials configured for Terraform
+- Existing S3 bucket and DynamoDB table created for backend:
+  - Bucket name: `ams1-bucket-01`
+  - DynamoDB table: `ams-dynamo-db-table-tf`
+- SSH key pair named `terra_project5` created in AWS EC2
+
+---
+
+## 🛠️ Usage
+
+1. Clone this repo
+2. Configure your Jenkins job with pipeline script from `Jenkinsfile`
+3. Add string parameter `action` with allowed values `apply` or `destroy`
+4. Run Jenkins job to deploy or destroy infrastructure
+5. Use Terraform CLI directly if needed:
+   ```bash
+   terraform init
+   terraform plan
+   terraform apply
+   terraform destroy
+
+🗒️ Notes
+
+    Update variables.tf with your AMI ID and region as needed
+
+    Bucket and DynamoDB table must exist before running Terraform with S3 backend
+
+    Security group allows wide SSH access (0.0.0.0/0), consider restricting in production
