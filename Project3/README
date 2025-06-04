@@ -1,1 +1,77 @@
+# Terraform Project 3 – Deploy Flask App on AWS EC2
 
+This project uses Terraform to provision AWS infrastructure and deploy a simple Python Flask application on an EC2 instance.
+
+## 🛠️ What It Does
+
+* Creates a custom VPC with public and private subnets
+* Provisions an EC2 instance in the public subnet
+* Sets up security groups allowing HTTP, HTTPS, and SSH access
+* Uploads a local `app.py` Flask application to the instance
+* Installs necessary packages and runs the Flask app using `remote-exec` provisioner
+
+## 🔧 Resources Created
+
+* VPC
+* Subnets (public & private)
+* Internet Gateway
+* Route Table and Association
+* Security Group
+* EC2 Instance
+* Key Pair
+
+## 📂 File Structure
+
+```
+.
+├── main.tf                  # Main Terraform configuration
+├── variables.tf             # Input variables
+├── app.py                   # Flask application
+└── README.md                # This file
+```
+
+## ✅ Requirements
+
+* AWS CLI configured
+* Terraform installed
+* SSH key pair (private and public)
+* A simple Flask app (like `app.py`) in the same directory
+
+## 🚀 How to Use
+
+1. Initialize Terraform:
+
+   ```bash
+   terraform init
+   ```
+
+2. Preview the changes:
+
+   ```bash
+   terraform plan
+   ```
+
+3. Apply the configuration:
+
+   ```bash
+   terraform apply
+   ```
+
+4. Once deployed, access your Flask app using the EC2 public IP:
+
+   ```
+   http://<EC2-PUBLIC-IP>:5000
+   ```
+
+## 🔒 Security Notes
+
+* SSH access is open to `0.0.0.0/0`. Restrict it for production.
+* Make sure your private key is secured and not committed to version control.
+
+## 🧹 Teardown
+
+To delete all resources:
+
+```bash
+terraform destroy
+```
