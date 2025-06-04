@@ -1,1 +1,107 @@
+# Terraform Project 4 – Bastion Host to Access Private EC2 Instance
 
+This Terraform project provisions a secure AWS infrastructure where a **bastion host (jump box)** is used to access a **private EC2 instance** located in a private subnet. The bastion host is placed in a public subnet and enables SSH access to the internal instance for secure management.
+
+---
+
+## 📌 Features
+
+- Creates a custom VPC with:
+  - One public subnet
+  - One private subnet
+- Internet Gateway for public access
+- Route table for public subnet
+- Bastion host in the public subnet
+- Private EC2 instance in the private subnet
+- Security groups to:
+  - Allow SSH into bastion from anywhere
+  - Allow SSH from bastion to private instance
+  - Allow HTTP traffic to the private instance
+
+---
+
+## 🔧 Terraform Structure
+
+```
+
+.
+├── main.tf              # Infrastructure resources
+├── variables.tf         # Input variables
+├── terraform.tfvars     # Actual variable values
+├── outputs.tf           # Outputs like Bastion IP
+└── README.md            # Project documentation
+
+````
+
+---
+
+## ⚙️ Prerequisites
+
+- AWS CLI configured
+- Terraform installed
+- Existing SSH key pair in AWS (`terra_project5`)
+- Valid Amazon Linux 2 or Ubuntu AMI ID (`ami-xyz`)
+
+---
+
+## 🚀 How to Use
+
+1. Initialize Terraform:
+
+```bash
+terraform init
+````
+
+2. Review the execution plan:
+
+```bash
+terraform plan
+```
+
+3. Apply the configuration:
+
+```bash
+terraform apply
+```
+
+4. Note the bastion host public IP from the output and SSH into it:
+
+```bash
+ssh -i ~/.ssh/your-key.pem ec2-user@<BASTION_PUBLIC_IP>
+```
+
+5. From inside the bastion host, SSH into the private instance:
+
+```bash
+ssh -i your-key.pem ec2-user@<PRIVATE_IP>
+```
+
+---
+
+## 🧹 Cleanup
+
+To destroy all resources:
+
+```bash
+terraform destroy
+```
+
+---
+
+## 🔒 Security Notes
+
+* Bastion host SSH access is open to the world (`0.0.0.0/0`). Restrict it to your IP in production.
+* Never expose your private key in version control.
+
+---
+
+## 📦 Outputs
+
+* **Bastion Public IP**: SSH into this to access internal servers
+
+---
+
+Let me know if you want a diagram added or a version with `remote-exec` provisioners to automate installations!
+
+```
+```
